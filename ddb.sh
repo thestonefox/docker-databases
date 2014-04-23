@@ -6,7 +6,7 @@ function mysql() {
              -e MYSQL_USER=${username} \
              -e MYSQL_PASSWORD=${password} \
              -e MYSQL_DATABASE=${schema} \
-             -name ${container} \
+             --name ${container} \
              orchardup/mysql
 }
 
@@ -15,7 +15,7 @@ function psql() {
              -e POSTGRESQL_USER=${username} \
              -e POSTGRESQL_PASS=${password} \
              -e POSTGRESQL_DB=${schema} \
-             -name ${container} \
+             --name ${container} \
              orchardup/postgresql
 }
 
