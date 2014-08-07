@@ -19,26 +19,37 @@ function psql() {
              zaiste/postgresql
 }
 
+function redis() {
+  docker run -d -p 6379:6379 \
+             --name ${container} \
+             dockerfile/redis
+}
+
 function_exists() {
   declare -f -F $1 > /dev/null
   return $?
 }
 
 if [ "$UID" -ne 0 ]
-  then echo "Please run with sudo"
+then
+  echo "Please run with sudo"
   exit
 fi
 
 
 if [ $# -lt 1 ]
 then
-  echo "Usage : $0 mysql|psql "
+  echo "Usage : $0 mysql|psql|redis "
   exit
 fi
 
-read -p "Please enter db username [default: root]: " username
-read -p "Please enter db password [default: password]: " password
-read -p "Please enter db name [default: test]: " schema
+if [ $1 != "redis" ]
+then
+  read -p "Please enter db username [default: root]: " username
+  read -p "Please enter db password [default: password]: " password
+  read -p "Please enter db name [default: test]: " schema
+fi
+
 read -p "Please enter docker container name [default: ${1}]": container
 
 username=${username:-root}
@@ -50,6 +61,8 @@ case "$1" in
   mysql)    function_exists mysql && mysql
           ;;
   psql)  function_exists psql && psql
+          ;;
+  redis) function_exists redis && redis
           ;;
   *)      echo "Invalid database"
           ;;

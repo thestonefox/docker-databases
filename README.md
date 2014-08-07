@@ -3,8 +3,6 @@ Databases in Docker
 
 Shell helper for launching common databases in docker containers.
 
-Based on the docker database containers provided by [OrchardUp](https://github.com/orchardup)
-
 Requirements
 ------------
 
@@ -15,6 +13,7 @@ Supported Databases
 
 * MySQL - [OrchardUp/Mysql](https://github.com/orchardup/docker-mysql)
 * PostgreSQL - [Zaiste/PostgreSQL](https://github.com/zaiste/docker-postgresql)
+* Redis - [Dockerfile/Redis](https://github.com/dockerfile/redis)
 
 Installation
 ------------
@@ -43,7 +42,19 @@ sudo ./ddb-kill.sh <container-name>
 Runtime Options
 ---------------
 
-You can customise the database settings when running the ddb.sh script. The below example will create a new docker mysql container with the following details:
+You can customise the database settings when running the ddb.sh script. 
+
+```bash
+# mysql/postgresql only
+- username
+- password
+- database name
+
+# all types
+- docker container name
+```
+
+The below example will create a new docker mysql container with the following details:
 
 * **mysql username:** myuser
 * **mysql password:** mypass
