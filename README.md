@@ -18,7 +18,7 @@ Supported Databases
 Installation
 ------------
 
-1. Git clone this repository `git clone git@github.com:thestonefox/docker-database.git`
+1. Git clone this repository `git clone git@github.com:thestonefox/docker-databases.git`
 2. cd to correct directory `cd docker-databases`
 
 Usage
