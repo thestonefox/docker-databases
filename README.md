@@ -14,7 +14,7 @@ Supported Databases
 -------------------
 
 * MySQL - [OrchardUp/Mysql](https://github.com/orchardup/docker-mysql)
-* PostgreSQL - [OrchardUp/PostgreSQL](https://github.com/orchardup/docker-postgresql)
+* PostgreSQL - [Zaiste/PostgreSQL](https://github.com/zaiste/docker-postgresql)
 
 Installation
 ------------

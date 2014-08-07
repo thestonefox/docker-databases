@@ -16,7 +16,7 @@ function psql() {
              -e POSTGRESQL_PASS=${password} \
              -e POSTGRESQL_DB=${schema} \
              --name ${container} \
-             orchardup/postgresql
+             zaiste/postgresql
 }
 
 function_exists() {
