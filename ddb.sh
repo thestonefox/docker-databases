@@ -25,6 +25,12 @@ function redis() {
              dockerfile/redis
 }
 
+function mongo() {
+  docker run -d -p 27017:27017 \
+             --name ${container} \
+             dockerfile/mongodb
+}
+
 function_exists() {
   declare -f -F $1 > /dev/null
   return $?
@@ -39,11 +45,11 @@ fi
 
 if [ $# -lt 1 ]
 then
-  echo "Usage : $0 mysql|psql|redis "
+  echo "Usage : $0 mysql|psql|redis|mongo "
   exit
 fi
 
-if [ $1 != "redis" ]
+if [ $1 = "mysql" ] || [ $1 = "psql" ]
 then
   read -p "Please enter db username [default: root]: " username
   read -p "Please enter db password [default: password]: " password
@@ -63,6 +69,8 @@ case "$1" in
   psql)  function_exists psql && psql
           ;;
   redis) function_exists redis && redis
+          ;;
+  mongo) function_exists mongo && mongo
           ;;
   *)      echo "Invalid database"
           ;;
