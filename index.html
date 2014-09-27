@@ -31,37 +31,132 @@
         <hr>
 
         <section id="main_content">
-          <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+          <h1>
+<a name="databases-in-docker" class="anchor" href="#databases-in-docker"><span class="octicon octicon-link"></span></a>Databases in Docker</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>Shell helper for launching common databases in docker containers.</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<h2>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<ul>
+<li>Docker 0.8+ (from docker.io)</li>
+</ul><h2>
+<a name="supported-databases" class="anchor" href="#supported-databases"><span class="octicon octicon-link"></span></a>Supported Databases</h2>
+
+<ul>
+<li>MySQL - <a href="https://github.com/orchardup/docker-mysql">OrchardUp/Mysql</a>
+</li>
+<li>PostgreSQL - <a href="https://github.com/zaiste/docker-postgresql">Zaiste/PostgreSQL</a>
+</li>
+<li>Redis - <a href="https://github.com/dockerfile/redis">Dockerfile/Redis</a>
+</li>
+<li>MongoDB - <a href="https://github.com/dockerfile/mongodb">Dockerfile/MongoDB</a>
+</li>
+</ul><h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<ol>
+<li>Git clone this repository <code>git clone git@github.com:thestonefox/docker-databases.git</code>
+</li>
+<li>cd to correct directory <code>cd docker-databases</code>
+</li>
+</ol><h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
 <h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<a name="starting-a-db-container" class="anchor" href="#starting-a-db-container"><span class="octicon octicon-link"></span></a>Starting a db container</h3>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<div class="highlight highlight-bash"><pre>sudo ./ddb.sh &lt;db-type&gt;
+</pre></div>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p><strong>Example:</strong> <code>sudo ./ddb.sh mysql</code></p>
 
 <h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<a name="terminating-a-db-container" class="anchor" href="#terminating-a-db-container"><span class="octicon octicon-link"></span></a>Terminating a db container</h3>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<div class="highlight highlight-bash"><pre>sudo ./ddb-kill.sh &lt;container-name&gt;
+</pre></div>
+
+<p><strong>Example:</strong> <code>sudo ./ddb-kill.sh mysqldb</code></p>
+
+<h2>
+<a name="runtime-options" class="anchor" href="#runtime-options"><span class="octicon octicon-link"></span></a>Runtime Options</h2>
+
+<p>You can customise the database settings when running the ddb.sh script. </p>
+
+<div class="highlight highlight-bash"><pre><span class="c"># mysql/postgresql only</span>
+- username
+- password
+- database name
+
+<span class="c"># all types</span>
+- docker container name
+</pre></div>
+
+<p>The below example will create a new docker mysql container with the following details:</p>
+
+<ul>
+<li>
+<strong>mysql username:</strong> myuser</li>
+<li>
+<strong>mysql password:</strong> mypass</li>
+<li>
+<strong>mysql default database:</strong> mytestdb</li>
+<li>
+<strong>docker container name:</strong> mysqldb</li>
+</ul><h3>
+<a name="creating-the-docker-db-container" class="anchor" href="#creating-the-docker-db-container"><span class="octicon octicon-link"></span></a>Creating the docker db container</h3>
+
+<ul>
+<li>Step 1. Run the ddb.sh script for mysql: </li>
+</ul><div class="highlight highlight-bash"><pre>sudo ./ddb.sh mysql
+</pre></div>
+
+<ul>
+<li>Step 2. You will be prompted to enter a default username:</li>
+</ul><div class="highlight highlight-bash"><pre>Please enter db username <span class="o">[</span>default: root<span class="o">]</span>: myuser
+</pre></div>
+
+<ul>
+<li>Step 3. You will be prompted to enter a default password:</li>
+</ul><div class="highlight highlight-bash"><pre>Please enter db password <span class="o">[</span>default: password<span class="o">]</span>: mypass
+</pre></div>
+
+<ul>
+<li>Step 4. You will be prompted to enter a default database schema name:</li>
+</ul><div class="highlight highlight-bash"><pre>Please enter db name <span class="o">[</span>default: <span class="nb">test</span><span class="o">]</span>: mytestdb
+</pre></div>
+
+<ul>
+<li>Step 5. You will be prompted to enter a docker container name:</li>
+</ul><div class="highlight highlight-bash"><pre>Please enter docker container name <span class="o">[</span>default: mysql<span class="o">]</span>: mysqldb
+</pre></div>
+
+<ul>
+<li>Step 6. When the above details have been entered, the docker container will pull and run and return the container ID</li>
+<li>Step 7. Run <code>sudo docker ps</code> to list the running docker containers</li>
+</ul><div class="highlight highlight-bash"><pre>CONTAINER ID        IMAGE                        COMMAND               CREATED             STATUS              PORTS                                        NAMES
+9f7c38765cd2        orchardup/mysql:latest       /usr/local/bin/run    <span class="m">3</span> seconds ago       Up <span class="m">2</span> seconds        0.0.0.0:3306-&gt;3306/tcp                       mysqldb  
+</pre></div>
+
+<p>You should now see your running docker mysql container with the name "mysqldb" with the default mysql port (3306) already mapped through to the container.</p>
 
 <h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<a name="terminating-the-container" class="anchor" href="#terminating-the-container"><span class="octicon octicon-link"></span></a>Terminating the container</h3>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<ul>
+<li>Step 1. Run the ddb-kill.sh script passing in the container name to terminate</li>
+</ul><div class="highlight highlight-bash"><pre>sudo ./ddb-kill.sh mysqldb
+</pre></div>
+
+<ul>
+<li>Step 2. The container will be stopped and then deleted</li>
+<li>Step 3. Run <code>sudo docker ps</code> to list the running docker containers</li>
+</ul><div class="highlight highlight-bash"><pre>CONTAINER ID        IMAGE                        COMMAND               CREATED             STATUS              PORTS                                        NAMES
+</pre></div>
+
+<p>You should now see your docker database container has been removed from the containers list.</p>
         </section>
 
         <footer>
