@@ -36,13 +36,6 @@ function_exists() {
   return $?
 }
 
-if [ "$UID" -ne 0 ]
-then
-  echo "Please run with sudo"
-  exit
-fi
-
-
 if [ $# -lt 1 ]
 then
   echo "Usage : $0 mysql|psql|redis|mongo "

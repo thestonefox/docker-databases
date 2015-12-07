@@ -26,19 +26,23 @@ Installation
 Usage
 -----
 
+  > #### Note:
+  > You may need to run the below commands with sudo
+  > depending on how you installed docker.
+
 ###Starting a db container
 ```bash
-sudo ./ddb.sh <db-type>
+./ddb.sh <db-type>
 ```
 
-**Example:** `sudo ./ddb.sh mysql`
+**Example:** `./ddb.sh mysql`
 
 ###Terminating a db container
 ```bash
-sudo ./ddb-kill.sh <container-name>
+./ddb-kill.sh <container-name>
 ```
 
-**Example:** `sudo ./ddb-kill.sh mysqldb`
+**Example:** `./ddb-kill.sh mysqldb`
 
 
 Runtime Options
@@ -67,7 +71,7 @@ The below example will create a new docker mysql container with the following de
 
 * Step 1. Run the ddb.sh script for mysql: 
 ```bash
-sudo ./ddb.sh mysql
+./ddb.sh mysql
 ```
 * Step 2. You will be prompted to enter a default username:
 ```bash
@@ -86,7 +90,7 @@ Please enter db name [default: test]: mytestdb
 Please enter docker container name [default: mysql]: mysqldb
 ```
 * Step 6. When the above details have been entered, the docker container will pull and run and return the container ID
-* Step 7. Run `sudo docker ps` to list the running docker containers
+* Step 7. Run `docker ps` to list the running docker containers
 ```bash
 CONTAINER ID        IMAGE                        COMMAND               CREATED             STATUS              PORTS                                        NAMES
 9f7c38765cd2        orchardup/mysql:latest       /usr/local/bin/run    3 seconds ago       Up 2 seconds        0.0.0.0:3306->3306/tcp                       mysqldb  
@@ -99,10 +103,10 @@ You should now see your running docker mysql container with the name "mysqldb" w
 
 * Step 1. Run the ddb-kill.sh script passing in the container name to terminate
 ```bash
-sudo ./ddb-kill.sh mysqldb
+./ddb-kill.sh mysqldb
 ```
 * Step 2. The container will be stopped and then deleted
-* Step 3. Run `sudo docker ps` to list the running docker containers
+* Step 3. Run `docker ps` to list the running docker containers
 ```bash
 CONTAINER ID        IMAGE                        COMMAND               CREATED             STATUS              PORTS                                        NAMES
 ```
