@@ -12,11 +12,11 @@ function mysql() {
 
 function psql() {
   docker run -d -p 5432:5432 \
-             -e POSTGRESQL_USER=${username} \
-             -e POSTGRESQL_PASS=${password} \
-             -e POSTGRESQL_DB=${schema} \
+             -e POSTGRES_USER=${username} \
+             -e POSTGRES_PASSWORD=${password} \
+             -e POSTGRES_DB=${schema} \
              --name ${container} \
-             zaiste/postgresql
+             postgres
 }
 
 function redis() {
