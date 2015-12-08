@@ -11,7 +11,7 @@ Requirements
 Supported Databases
 -------------------
 
-* MySQL - [OrchardUp/Mysql](https://github.com/orchardup/docker-mysql)
+* MySQL - [Docker-Library/Mysql](https://github.com/docker-library/mysql)
 * PostgreSQL - [Docker-Library/Postgres](https://github.com/docker-library/postgres)
 * Redis - [Dockerfile/Redis](https://github.com/dockerfile/redis)
 * MongoDB - [Dockerfile/MongoDB](https://github.com/dockerfile/mongodb)

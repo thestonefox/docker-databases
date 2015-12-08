@@ -7,7 +7,7 @@ function mysql() {
              -e MYSQL_PASSWORD=${password} \
              -e MYSQL_DATABASE=${schema} \
              --name ${container} \
-             orchardup/mysql
+             mysql
 }
 
 function psql() {
